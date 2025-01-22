@@ -1,2 +1,2 @@
-.config/nvim/pack
-.config/nvim/plugin
+src/.config/nvim/pack
+src/.config/nvim/plugin
