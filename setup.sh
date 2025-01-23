@@ -42,7 +42,7 @@ git clone https://github.com/github/copilot.vim.git \
 # Move and configure Neovim files
 mv ~/.config/nvim/after ~/.config/nvim/.after
 
-nvim -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c "PackerSync" -c "Copilot setup"
+nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User PackerComplete quitall' -c "PackerSync"
 
 mv ~/.config/nvim/.after ~/.config/nvim/after
 
