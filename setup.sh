@@ -1,4 +1,4 @@
-sudo apt uddate -y
+sudo apt update -y
 sudo apt upgrade -y
 
 sudo apt install gh neovim tmux nodejs rsync gcc -y
