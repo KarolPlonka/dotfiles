@@ -1,7 +1,9 @@
 sudo apt udpate -y
 sudo apt upgrade -y
 
-sudo apt install neovim tmux nodejs rsync gcc -y
+sudo apt install gh neovim tmux nodejs rsync gcc -y
+
+gh auth login
 
 mkdir -p ~/.config/tmux/plugins/catppuccin
 
