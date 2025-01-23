@@ -8,7 +8,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # Install necessary packages
-sudo apt install gh neovim tmux nodejs rsync gcc -y
+sudo apt install gh neovim tmux nodejs rsync gcc xclip ripgrep -y
 
 # Authenticate with GitHub CLI
 gh auth login
