@@ -29,7 +29,7 @@ git clone https://github.com/ofirgall/tmux-window-name \
     ~/.config/tmux/plugins/tmux-window-name
 
 # Sync files
-rsync -a --update --ignore-existing src/ ~/
+rsync -a --update src/ ~/
 
 # Install packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
