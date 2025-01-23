@@ -3,6 +3,15 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+# Parse command-line arguments
+NO_GITHUB=false
+for arg in "$@"
+do
+    if [ "$arg" == "--no-github" ]; then
+        NO_GITHUB=true
+    fi
+done
+
 # Update and upgrade the system
 sudo apt update -y
 sudo apt upgrade -y
@@ -10,8 +19,10 @@ sudo apt upgrade -y
 # Install necessary packages
 sudo apt install gh neovim tmux nodejs rsync gcc xclip ripgrep -y
 
-# Authenticate with GitHub CLI
-gh auth login
+# Authenticate with GitHub CLI if --no-github flag is not set
+if [ "$NO_GITHUB" = false ]; then
+    gh auth login
+fi
 
 # Create directories and clone repositories
 mkdir -p ~/.config/tmux/plugins/catppuccin
@@ -35,9 +46,11 @@ rsync -a --update src/ ~/
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Install Copilot.vim
-git clone https://github.com/github/copilot.vim.git \
-  ~/.config/nvim/pack/github/start/copilot.vim
+# Install Copilot.vim if --no-github flag is not set
+if [ "$NO_GITHUB" = false ]; then
+    git clone https://github.com/github/copilot.vim.git \
+      ~/.config/nvim/pack/github/start/copilot.vim
+fi
 
 # Move and configure Neovim files
 mv ~/.config/nvim/after ~/.config/nvim/.after
@@ -46,7 +59,9 @@ nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User Pa
 
 mv ~/.config/nvim/.after ~/.config/nvim/after
 
-# Setup Copilot
-nvim -c "Copilot setup" -c "q!"
+# Setup Copilot if --no-github flag is not set
+if [ "$NO_GITHUB" = false ]; then
+    nvim -c "Copilot setup" -c "q!"
+fi
 
 echo "SETUP COMPLETE!!!"
