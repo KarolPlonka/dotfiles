@@ -64,7 +64,10 @@ fi
 # Move and configure Neovim files
 # mv ~/.config/nvim/after ~/.config/nvim/.after
 
+mkdir -p ~/.config/nvim/lua/k-roll
+cp .config/nvim/lua/k-roll/packer.lua ~/.config/nvim/lua/k-roll/packer.lua
 nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User PackerComplete quitall' -c "PackerSync"
+
 
 # mv ~/.config/nvim/.after ~/.config/nvim/after
 
