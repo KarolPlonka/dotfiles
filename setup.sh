@@ -47,12 +47,16 @@ git clone https://github.com/ofirgall/tmux-window-name \
 # Sync files
 # rsync -a --update . ~/
 
+
 # Install packer.nvim
+mkdir -p ~/.local/share/nvim/site/pack/packer/start
+
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Install Copilot.vim if --no-github flag is not set
 if [ "$NO_GITHUB" = false ]; then
+    mkdir -p ~/.config/nvim/pack/github/start
     git clone https://github.com/github/copilot.vim.git \
       ~/.config/nvim/pack/github/start/copilot.vim
 fi
