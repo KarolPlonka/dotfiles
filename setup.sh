@@ -67,6 +67,7 @@ fi
 mkdir -p ~/.config/nvim/lua/k-roll
 cp .config/nvim/lua/k-roll/packer.lua ~/.config/nvim/lua/k-roll/packer.lua
 nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User PackerComplete quitall' -c "PackerSync"
+rm ~/.config/nvim/lua/k-roll/packer.lua
 
 
 # mv ~/.config/nvim/.after ~/.config/nvim/after
@@ -75,5 +76,26 @@ nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User Pa
 if [ "$NO_GITHUB" = false ]; then
     nvim -c "Copilot setup" -c "q!"
 fi
+
+
+while IFS= read -r line
+do
+    # Check if the line starts with "!"
+    if [[ "$line" =~ ^\! ]]; then
+        # Extract the path (remove the "!" at the beginning)
+        path="${line:1}"
+
+        rm -rf "$HOME/$path"
+        # echo "rm -rf ~/$path"
+    fi
+done < ".gitignore"
+
+rm -rf .git
+cd ~
+git init
+git branch -M linux
+git remote add origin https://github.com/KarolPlonka/dotfiles.git
+
+git pull --set-upstream origin linux
 
 echo "SETUP COMPLETE!!!"
