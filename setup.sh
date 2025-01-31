@@ -5,16 +5,21 @@ set -e
 
 # Parse command-line arguments
 NO_GITHUB=false
+NO_UPDATE=false
 for arg in "$@"
 do
     if [ "$arg" == "--no-github" ]; then
         NO_GITHUB=true
+    elif [ "$arg" == "--no-update" ]; then
+        NO_UPDATE=true
     fi
 done
 
 # Update and upgrade the system
-sudo apt update -y
-sudo apt upgrade -y
+if [ "$NO_UPDATE" = false ]; then
+    sudo apt update -y
+    sudo apt upgrade -y
+fi
 
 # Install necessary packages
 sudo apt install gh neovim tmux nodejs rsync gcc xclip ripgrep python3-venv -y
@@ -40,7 +45,7 @@ git clone https://github.com/ofirgall/tmux-window-name \
     ~/.config/tmux/plugins/tmux-window-name
 
 # Sync files
-rsync -a --update src/ ~/
+rsync -a --update ./ ~/
 
 # Install packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
