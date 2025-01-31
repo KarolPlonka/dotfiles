@@ -5,14 +5,22 @@
 !setup.sh
 
 !.bashrc
+!.bashrc.d/
 !.bashrc.d/**
 
-!.config/nvim/after/**
+!.config/
+
+!.config/nvim/
 !.config/nvim/init.lua
-!.config/nvim/lua/**
 !.config/nvim/README.md
+!.config/nvim/after/
+!.config/nvim/after/**
+!.config/nvim/lua/
+!.config/nvim/lua/**
 
 !.tmux.conf
+!.config/tmux/
+!.config/tmux/scripts/
 !.config/tmux/scripts/**
 
 
