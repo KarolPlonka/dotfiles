@@ -98,4 +98,5 @@ git remote add origin https://github.com/KarolPlonka/dotfiles.git
 
 git pull --set-upstream origin linux
 
-echo "SETUP COMPLETE!!!"
+echo "SETUP COMPLETE"
+echo "You can remove the dotfiles directory now"
