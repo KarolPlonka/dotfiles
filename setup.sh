@@ -62,11 +62,11 @@ if [ "$NO_GITHUB" = false ]; then
 fi
 
 # Move and configure Neovim files
-mv ~/.config/nvim/after ~/.config/nvim/.after
+# mv ~/.config/nvim/after ~/.config/nvim/.after
 
 nvim --headless -c "so ~/.config/nvim/lua/k-roll/packer.lua" -c 'autocmd User PackerComplete quitall' -c "PackerSync"
 
-mv ~/.config/nvim/.after ~/.config/nvim/after
+# mv ~/.config/nvim/.after ~/.config/nvim/after
 
 # Setup Copilot if --no-github flag is not set
 if [ "$NO_GITHUB" = false ]; then
