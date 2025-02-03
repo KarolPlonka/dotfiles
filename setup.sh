@@ -78,23 +78,17 @@ if [ "$NO_GITHUB" = false ]; then
 fi
 
 
-while IFS= read -r line
-do
-    # Check if the line starts with "!"
-    if [[ "$line" =~ ^\! ]]; then
-        # Extract the path (remove the "!" at the beginning)
-        path="${line:1}"
-
-        rm -rf "$HOME/$path"
-        # echo "rm -rf ~/$path"
-    fi
-done < ".gitignore"
-
 rm -rf .git
 cd ~
 git init
 git branch -M linux
 git remote add origin https://github.com/KarolPlonka/dotfiles.git
+
+while IFS= read -r line
+do
+    # echo "rm -rf $HOME/$line"
+    rm -f $HOME/$line
+done < <(git ls-tree -r origin/linux --name-only)
 
 git pull --set-upstream origin linux
 
