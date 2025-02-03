@@ -118,11 +118,7 @@ fi
 
 
 # =========================== k-roll CUSTOM CONFIG ===========================
-for file in ~/.bashrc.d/*; do
-    [ -r "$file" ] && source "$file"
-done
 
-ps1_colorful_theme
 
 alias py=python3
 alias python=python3
@@ -138,11 +134,20 @@ export EDITOR="$VISUAL"
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
+bind '"\C-i": beginning-of-line'
+bind '"\C-a": end-of-line'
+
 set show-mode-in-prompt on
 set vi-cmd-mode-string "\1\e[2 q\2"
 set vi-ins-mode-string "\1\e[6 q\2"
 
+for file in ~/.bashrc.d/*; do
+    [ -r "$file" ] && source "$file"
+done
 
 if [ -f ~/.env ]; then
   source ~/.env 
 fi
+
+ps1_colorful_theme
+
