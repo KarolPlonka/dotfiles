@@ -83,10 +83,11 @@ cd ~
 git init
 git branch -M linux
 git remote add origin https://github.com/KarolPlonka/dotfiles.git
+git fetch origin linux
 
 while IFS= read -r line
 do
-    # echo "rm -rf $HOME/$line"
+    # echo "rm -f $HOME/$line"
     rm -f $HOME/$line
 done < <(git ls-tree -r origin/linux --name-only)
 
