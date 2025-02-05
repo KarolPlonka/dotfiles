@@ -22,7 +22,7 @@ if [ "$NO_UPDATE" = false ]; then
 fi
 
 # Install necessary packages
-sudo apt install gh neovim tmux nodejs rsync gcc xclip ripgrep python3-venv -y
+sudo apt install gh neovim tmux nodejs gcc xclip ripgrep python3-venv -y
 
 # Authenticate with GitHub CLI if --no-github flag is not set
 if [ "$NO_GITHUB" = false ]; then
