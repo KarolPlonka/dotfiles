@@ -45,7 +45,7 @@ git clone https://github.com/ofirgall/tmux-window-name \
     ~/.config/tmux/plugins/tmux-window-name
 
 # Sync files
-rsync -a --update .config ~/.config
+# rsync -a --update .config ~/.config
 
 # Inject into .bashrc
 echo "source ~/.config/bash/bash_config.sh"
