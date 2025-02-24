@@ -5,7 +5,7 @@ function pyte {
     local file_name="test.py"
 
     local create_venv=false
-    local session_name="$(date +"%H-%M_%Y-%m-%d")"
+    local session_name="PYTE__$(date +"%H-%M_%Y-%m-%d")"
 
 
     for arg in "$@"; do
