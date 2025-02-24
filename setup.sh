@@ -45,14 +45,10 @@ git clone https://github.com/ofirgall/tmux-window-name \
     ~/.config/tmux/plugins/tmux-window-name
 
 # Sync files
-<<<<<<< HEAD
-# rsync -a --update . ~/
-=======
-# rsync -a --update .config ~/.config
+rsync -a --update .config ~/.config
 
 # Inject into .bashrc
 echo "source ~/.config/bash/bash_config.sh"
->>>>>>> cc6b88b (moved all config to ~/.config (not working yet))
 
 
 # Install packer.nvim
@@ -86,11 +82,7 @@ fi
 
 
 rm -rf .git
-<<<<<<< HEAD
-cd ~
-=======
 cd ~/.config/
->>>>>>> cc6b88b (moved all config to ~/.config (not working yet))
 git init
 git branch -M linux
 git remote add origin https://github.com/KarolPlonka/dotfiles.git
