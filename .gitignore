@@ -4,20 +4,11 @@
 
 !setup.sh
 
-<<<<<<< HEAD
-!.bashrc
-!.bashrc.d/
-!.bashrc.d/**
-
-!.config/
-
-=======
 !.config/
 
 !.config/bash/
 !.config/bash/**
 
->>>>>>> cc6b88b (moved all config to ~/.config (not working yet))
 !.config/nvim/
 !.config/nvim/init.lua
 !.config/nvim/README.md
