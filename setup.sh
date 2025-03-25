@@ -54,11 +54,12 @@ git clone https://github.com/tmux-plugins/tmux-battery \
 git clone https://github.com/tmux-plugins/tmux-cpu \
     ~/.config/tmux/plugins/tmux-cpu
 
+# dependencies for tmux-window-name
+sudo apt install -y python3-libtmux
+
 git clone https://github.com/ofirgall/tmux-window-name \
     ~/.config/tmux/plugins/tmux-window-name
 
-# Sync files
-# rsync -a --update .config ~/.config
 
 # Inject into .bashrc
 echo "source ~/.config/bash/bash_config.sh" >> ~/.bashrc
