@@ -27,7 +27,11 @@ if [ "$NO_UPDATE" = false ]; then
 fi
 
 # Install necessary packages
-sudo apt install gh neovim tmux nodejs gcc xclip ripgrep python3-venv -y
+sudo apt install gh neovim tmux nodejs gcc xclip ripgrep python3-venv xdg-utils -y
+
+# Install NVM and Node.js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+. "$HOME/.nvm/nvm.sh" && nvm install node
 
 # Authenticate with GitHub CLI if --no-github flag is not set
 if [ "$NO_GITHUB" = false ]; then
@@ -105,6 +109,13 @@ find ".config" | while read -r path; do
         fi
     fi
 done
+
+
+# Grant execute permission to all scripts
+find .config -type f -name "*.sh" -o -name "*.py" | while read -r path; do
+    chmod +x "$path"
+done
+
 
 
 echo "SETUP COMPLETE! run 'exec bash' to load new config"
