@@ -16,6 +16,9 @@ do
         NO_UPDATE=true
     elif [ "$arg" == "--symlink" ]; then
         SYM_LINK=true
+    else
+        echo "Invalid argument: $arg"
+        exit 1
     fi
 done
 
@@ -113,7 +116,7 @@ done
 
 # Grant execute permission to all scripts
 find .config -type f -name "*.sh" -o -name "*.py" | while read -r path; do
-    chmod +x "$path"
+    sudo chmod +x "$path"
 done
 
 
