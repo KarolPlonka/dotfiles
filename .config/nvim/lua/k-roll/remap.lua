@@ -23,3 +23,7 @@ vim.keymap.set("i", "<C-b>", "<C-w>")
 
 vim.keymap.set("v", "<C-y>", '"+y')
 vim.keymap.set("n", "<C-p>", '"+p')
+
+-- ctrl + backspace in insert mode to delete word
+vim.keymap.set("i", "<C-BS>", "<C-w>")
+
