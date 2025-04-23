@@ -40,6 +40,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 if [ "$NO_GITHUB" = false ]; then
     echo "Go to https://github.com/login/device/ on already logged device if no browser."
     gh auth login
+    gh extension install github/gh-copilot
 fi
 
 # Create directories and clone repositories

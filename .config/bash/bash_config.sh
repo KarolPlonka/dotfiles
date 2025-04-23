@@ -27,4 +27,6 @@ if [ -f ~/.env ]; then
   source ~/.env 
 fi
 
-
+# alias ghcs='gh copilot suggest --no-prompt'
+# alias ghcs='gh copilot suggest --shell-out -t shell'
+eval "$(gh copilot alias -- bash)"
