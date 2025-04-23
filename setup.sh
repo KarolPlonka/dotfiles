@@ -54,6 +54,12 @@ git clone https://github.com/tmux-plugins/tmux-battery \
 git clone https://github.com/tmux-plugins/tmux-cpu \
     ~/.config/tmux/plugins/tmux-cpu
 
+git clone https://github.com/tmux-plugins/tmux-resurrect \
+    ~/.config/tmux/plugins/tmux-resurrect
+
+git clone https://github.com/tmux-plugins/tmux-continuum \
+    ~/.config/tmux/plugins/tmux-continuum
+
 # dependencies for tmux-window-name
 sudo apt install -y python3-libtmux
 
