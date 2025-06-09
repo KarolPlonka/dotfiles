@@ -2,53 +2,7 @@
 
 -- Setup Mason for LSP server management
 require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({
-        on_attach = function(client, bufnr)
-          -- Define keybindings for LSP functions
-          local opts = { noremap=true, silent=true, buffer=bufnr }
-          
-          -- Go to definition
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          -- Go to declaration
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-          -- Show implementation
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-          -- Show type definition
-          vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
-          -- Show references
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          -- Rename symbol
-          vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-          -- Code actions
-          vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('x', '<F4>', vim.lsp.buf.code_action, opts)
-          -- Show hover information
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          -- Show signature help
-          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-          -- Format code
-          vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
-          -- Diagnostics navigation
-          vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-          vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-          -- Show diagnostics in hover window
-          vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-          -- Show diagnostics in location list
-          vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-          -- Show workspace symbols
-          vim.keymap.set('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
-        end,
-        -- You can add additional capabilities here if needed
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
-      })
-    end,
-  }
-})
-
+require('mason-lspconfig').setup({ ensure_installed = {}, })
 -- Configure phpactor specifically
 
 -- Setup nvim-cmp for autocompletion
@@ -84,3 +38,30 @@ cmp.setup({
   -- You can add formatting here if needed
   -- formatting = {...}
 })
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●',  -- Customize this symbol as you like (●, ■, ✗, etc.)
+    spacing = 2,   -- Space between the diagnostic and the code
+  },
+  signs = true,         -- Show signs in the gutter
+  underline = true,     -- Underline problematic code
+  update_in_insert = false, -- Don't show diagnostics while typing (optional)
+  severity_sort = true, -- Sort diagnostics by severity
+})
+
+vim.o.winborder = "rounded"
+
+vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
+
+
+local on_attach = function(client, bufnr)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  -- You can add more keybindings here, for example:
+  -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+end
+
+vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
+
