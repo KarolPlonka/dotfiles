@@ -33,8 +33,6 @@ alias vim='nvim'
 # alias ghcs='gh copilot suggest --shell-out -t shell'
 eval "$(gh copilot alias -- bash)"
 
-# Bindings for moving to the beginning and end of the line
 bind '"\C-a": end-of-line'
-bind '"\C-i": beginning-of-line'
 
 
