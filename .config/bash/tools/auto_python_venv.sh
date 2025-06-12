@@ -1,26 +1,26 @@
 activate_nearest_venv() {
-    # Return early if already in a virtual environment
-    if [[ -n "$VIRTUAL_ENV" && "$PWD"/ == "$VIRTUAL_ENV"/* ]]; then
-        return
+    # Deactivate the current virtual environment if necessary
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Check if the current directory is still part of the active VIRTUAL_ENV
+        if [[ "$PWD"/ != "$VIRTUAL_ENV"/* ]]; then
+            deactivate
+        fi
     fi
 
-    # Deactivate if in a VENV but not under it anymore
-    if [[ -n "$VIRTUAL_ENV" && "$PWD"/ != "$VIRTUAL_ENV"/* ]]; then
-        deactivate
-    fi
+    # A list of possible virtual environment directory names
+    declare -a venv_names=(".venv" "venv" "env")
 
+    # Check each directory in the path to see if it contains a virtual environment
     local dir="$PWD"
-    local venv_names=(".venv" "venv" "env")
-
     while [[ "$dir" != "/" ]]; do
         for venv_dir in "${venv_names[@]}"; do
-            if [[ -x "$dir/$venv_dir/bin/activate" ]]; then
+            if [[ -d "$dir/$venv_dir" ]]; then
                 source "$dir/$venv_dir/bin/activate"
-                setup_ps1 2>/dev/null || true
-                return
+                setup_ps1 # Update the prompt
+                return # Stop after activating the first found environment
             fi
         done
-        dir="$(dirname "$dir")"
+        dir="$(dirname "$dir")" # Move up a directory
     done
 }
 
@@ -30,12 +30,12 @@ function cd() {
 }
 
 function pip() {
+    command pip "$@" || return
     activate_nearest_venv
-    command pip "$@"
 }
 
 function uv() {
+    command uv "$@" || return
     activate_nearest_venv
-    command uv "$@"
 }
 
