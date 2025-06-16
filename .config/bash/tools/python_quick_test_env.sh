@@ -2,6 +2,7 @@
 function pyte {
     # CONSTANTS
     local venv_name=".venv"
+    local venv_args=""
     local file_name="test.py"
 
     local create_venv=false
@@ -12,6 +13,14 @@ function pyte {
         case "$arg" in
             -v|--venv)
                 create_venv=true
+                ;;
+            --venv=*)
+                create_venv=true
+                venv_args="${arg#*=}"
+                ;;
+            -v=*)
+                create_venv=true
+                venv_args="${arg#*=}"
                 ;;
             *)
                 session_name="$arg"
@@ -29,15 +38,14 @@ function pyte {
     mkdir -p "/tmp/pyte"
     mkdir -p "$path"
 
-    if $create_venv; then
-        python -m venv "$path/$venv_name"
-    fi
+    echo "Creating session: $session_name"
 
     touch "$path/$file_name"
 
-
     tmux new-session -d -s "$session_name" -c "$path" 
     if $create_venv; then
+        tmux send-keys -t "$session_name" "uv venv $venv_args" C-m
+        tmux send-keys -t "$session_name" "uv init --bare" C-m
         tmux send-keys -t "$session_name" "source $path/$venv_name/bin/activate" C-m
     fi
     tmux send-keys -t "$session_name" "tmux new-window -d" C-m
