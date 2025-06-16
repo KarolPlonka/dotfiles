@@ -16,7 +16,7 @@ activate_nearest_venv() {
         for venv_dir in "${venv_names[@]}"; do
             if [[ -d "$dir/$venv_dir" ]]; then
                 source "$dir/$venv_dir/bin/activate"
-                setup_ps1 # Update the prompt
+                # setup_ps1 # Update the prompt
                 return # Stop after activating the first found environment
             fi
         done
@@ -39,3 +39,5 @@ function uv() {
     activate_nearest_venv
 }
 
+# On shell startup
+activate_nearest_venv   
