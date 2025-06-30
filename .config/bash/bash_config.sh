@@ -17,11 +17,14 @@ set show-mode-in-prompt on
 set vi-cmd-mode-string "\1\e[2 q\2"
 set vi-ins-mode-string "\1\e[6 q\2"
 
+if [ -f ~/.config/bash/prompt.sh ]; then
+    source ~/.config/bash/prompt.sh
+fi
+
 for file in ~/.config/bash/tools/*; do
     [ -r "$file" ] && source "$file"
 done
 
-source ~/.config/bash/prompt.sh
 
 if [ -f ~/.env ]; then
   source ~/.env 
