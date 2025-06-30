@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use 'AlexvZyl/nordic.nvim'
   use "EdenEast/nightfox.nvim"
   use {'ojroques/nvim-hardline'}
+  use { "scottmckendry/cyberdream.nvim" }
   
   -- Treesitter for better syntax highlighting
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})

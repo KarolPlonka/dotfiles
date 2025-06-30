@@ -27,6 +27,8 @@ vim.keymap.set("n", "<C-p>", '"+p')
 -- ctrl + backspace in insert mode to delete word
 vim.keymap.set("i", "<C-BS>", "<C-w>")
 
+vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev)
 
 -- leader rr to restart lsp server
 vim.keymap.set("n", "<leader>rr", function()
