@@ -215,9 +215,9 @@ function wrap {
 
 
 # Reload the prompt after source to ensure it is updated. (for python venv)
-function source {
-    command source $1
-    setup_ps1
-}
+# function source {
+#     command source $1
+#     setup_ps1
+# }
 
 ps1_colorful_theme

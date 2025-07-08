@@ -1,13 +1,10 @@
 activate_nearest_venv() {
     # Deactivate the current virtual environment if necessary
     if [[ -n "$VIRTUAL_ENV" ]]; then
-        # Check if the current directory is still part of the active VIRTUAL_ENV
-        if [[ "$PWD"/ != "$VIRTUAL_ENV"/* ]]; then
-            deactivate
-            setup_ps1
-            return
-        fi
+        deactivate
     fi
+
+
 
     # A list of possible virtual environment directory names
     declare -a venv_names=(".venv" "venv" "env")
