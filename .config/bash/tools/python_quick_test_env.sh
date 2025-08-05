@@ -42,14 +42,14 @@ function pyte {
 
     touch "$path/$file_name"
 
-    tmux new-session -d -s "$session_name" -c "$path" 
-    if $create_venv; then
-        tmux send-keys -t "$session_name" "uv venv $venv_args" C-m
-        tmux send-keys -t "$session_name" "uv init --bare" C-m
-        tmux send-keys -t "$session_name" "source $path/$venv_name/bin/activate" C-m
-    fi
-    tmux send-keys -t "$session_name" "tmux new-window -d" C-m
-    tmux send-keys -t "$session_name:1" "source $path/$venv_name/bin/activate" C-m
-    tmux send-keys -t "$session_name" "nvim $file_name" C-m
-    tmux switch -t "$session_name"
+    tmux new-session -d -s "$session_name" -c "$path" \
+        "$(if $create_venv; then
+            echo "uv venv $venv_args && uv init --bare && source $path/$venv_name/bin/activate && "
+        fi)tmux rename-window nvim && nvim $file_name"
+
+    # Create the second window with venv activated
+    tmux new-window -t "$session_name" -c "$path" \
+        "$(if $create_venv; then echo "source $path/$venv_name/bin/activate; "; fi)exec $SHELL"
+
+    tmux switch -t "$session_name" \; select-window -t nvim
 }

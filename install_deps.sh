@@ -31,6 +31,8 @@ $SUDO_CMD apt install -y \
     ripgrep \
     python3-venv \
     xdg-utils \
+    fontconfig \
+    dialog \
     bash
 
 # Clean up

@@ -146,4 +146,32 @@ find .config -type f -name "*.sh" -o -name "*.py" | while read -r path; do
     sudo chmod +x "$path"
 done
 
+# Add custom keybindings for GNOME
+if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ "$DESKTOP_SESSION" = "gnome" ]; then
+    echo "GNOME detected. Adding keybinding..."
+    
+    # Get current custom keybindings
+    current=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+    
+    # Add custom0 if not in list
+    if [[ "$current" != *"custom0"* ]]; then
+        if [ "$current" = "@as []" ] || [ "$current" = "[]" ]; then
+            gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+        else
+            new="${current%]}, '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+            gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$new"
+        fi
+    fi
+    
+    # Set keybinding properties
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'nvim temp file'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c ~/.config/scripts/nvim_tmp_file.sh'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Primary><Alt>n'
+    
+    echo "Keybinding added: Ctrl+Alt+N for nvim temp file"
+else
+    echo "GNOME not detected. Exiting."
+    exit 1
+fi
+
 echo "SETUP COMPLETE! run 'exec bash' to load new config"

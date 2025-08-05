@@ -91,7 +91,7 @@ function setup_ps1 {
 
 
   # [.../dir/dir/dir] Current path trimmed (compat w/ bash3 and bash4)
-  PS1+="\$(wrap '[] ' \$(color_dirtrim 3 $c_dir_path))"
+  PS1+="\$(wrap '[] ' \$(color_dirtrim 6 $c_dir_path))"
 
   PS1+="\$(wrap '|| ' \$(color_python_venv_info $c_python_venv))"
 

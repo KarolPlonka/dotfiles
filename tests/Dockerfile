@@ -29,6 +29,12 @@ RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh -k | ba
     && nvm install --lts \
     && nvm use default
 
+RUN wget -O /tmp/JetBrainsMono.zip "https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip" && \
+    unzip /tmp/JetBrainsMono.zip -d /tmp/JetBrainsMono && \
+    mkdir -p /usr/share/fonts/truetype/jetbrains && \
+    cp /tmp/JetBrainsMono/fonts/ttf/*.ttf /usr/share/fonts/truetype/jetbrains/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/JetBrainsMono.zip /tmp/JetBrainsMono
 
 # Setup workspace
 RUN mkdir dotfiles

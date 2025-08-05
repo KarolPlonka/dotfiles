@@ -16,8 +16,24 @@ telescope.setup({
 })
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
+vim.keymap.set('n', '<leader>fa', function()
+  builtin.find_files({
+    hidden = true,
+    no_ignore = true,
+    no_ignore_parent = true,
+  })
+end, { desc = "Find all files (including hidden)" })
+
+
 vim.keymap.set("n", "<leader>gs", builtin.live_grep, {})
+
+vim.keymap.set('n', '<leader>ga', function()
+  builtin.live_grep({
+    additional_args = function()
+      return { "--hidden", "--no-ignore" }
+    end
+  })
+end, { desc = "Grep all files (including hidden)" })
 
 local function search_visual_selection()
   -- Save current register

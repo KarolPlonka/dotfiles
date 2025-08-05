@@ -15,8 +15,7 @@ edit_command_in_nvim() {
          -c "wincmd j"
     
     if [ -f "$cmd_tmpfile" ]; then
-        READLINE_LINE=$(<"$cmd_tmpfile")
-        READLINE_POINT=${#READLINE_LINE}
+        READLINE_LINE=$(cat $cmd_tmpfile)
     fi
     rm "$cmd_tmpfile"
 }
