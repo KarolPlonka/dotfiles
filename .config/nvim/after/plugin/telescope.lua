@@ -21,19 +21,29 @@ vim.keymap.set('n', '<leader>fa', function()
     hidden = true,
     no_ignore = true,
     no_ignore_parent = true,
+    file_ignore_patterns = {
+      "^.venv/",
+      "^node_modules/",
+      "^.git/",
+    }
   })
-end, { desc = "Find all files (including hidden)" })
-
+end, { desc = "Find all files (including hidden, exclude certain dirs)" })
 
 vim.keymap.set("n", "<leader>gs", builtin.live_grep, {})
 
 vim.keymap.set('n', '<leader>ga', function()
   builtin.live_grep({
     additional_args = function()
-      return { "--hidden", "--no-ignore" }
+      return { 
+        "--hidden", 
+        "--no-ignore", 
+        "--glob", "!.venv/**",
+        "--glob", "!node_modules/**",
+        "--glob", "!.git/**"
+      }
     end
   })
-end, { desc = "Grep all files (including hidden)" })
+end, { desc = "Grep all files (including hidden, exclude certain dirs)" })
 
 local function search_visual_selection()
   -- Save current register

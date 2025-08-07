@@ -1,6 +1,6 @@
 alias py=python3
 alias python=python3
-alias xclip='xclip -selection clipboard'
+alias clip='xclip -selection clipboard'
 
 mkdir -p ~/.bash_history
 
@@ -68,6 +68,8 @@ alias vim='nvim'
 if gh copilot --help &>/dev/null; then
     eval "$(gh copilot alias -- bash)"
 fi
+
+alias collama='~/snippets/collama.sh'
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'

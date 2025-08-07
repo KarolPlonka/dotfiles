@@ -22,6 +22,7 @@ vim.keymap.set("n", "<C-n>", "<C-^>")
 vim.keymap.set("i", "<C-b>", "<C-w>")
 
 vim.keymap.set("v", "<C-y>", '"+y')
+-- use xclip
 vim.keymap.set("n", "<C-p>", '"+p')
 
 -- ctrl + backspace in insert mode to delete word
@@ -29,6 +30,7 @@ vim.keymap.set("i", "<C-BS>", "<C-w>")
 
 vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "<leader>eg", vim.diagnostic.open_float)
 
 -- leader rr to restart lsp server
 vim.keymap.set("n", "<leader>rr", function()

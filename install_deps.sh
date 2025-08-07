@@ -32,7 +32,7 @@ $SUDO_CMD apt install -y \
     python3-venv \
     xdg-utils \
     fontconfig \
-    dialog \
+    gpaste-2 \
     bash
 
 # Clean up
