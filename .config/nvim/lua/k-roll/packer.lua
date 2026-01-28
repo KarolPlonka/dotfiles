@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
   use { "scottmckendry/cyberdream.nvim" }
   
   -- Treesitter for better syntax highlighting
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use('nvim-treesitter/nvim-treesitter')
   
   -- UndoTree
   use('mbbill/undotree')
