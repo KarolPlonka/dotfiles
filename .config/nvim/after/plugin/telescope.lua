@@ -5,6 +5,9 @@ telescope.load_extension('live_grep_args')
 
 telescope.setup({
   defaults = {
+    preview = {
+      treesitter = false,
+    },
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,

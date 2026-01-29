@@ -25,13 +25,19 @@ return require('packer').startup(function(use)
   use { "scottmckendry/cyberdream.nvim" }
   
   -- Treesitter for better syntax highlighting
-  use('nvim-treesitter/nvim-treesitter')
+  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   
   -- UndoTree
   use('mbbill/undotree')
   
   -- Mason for LSP server management
-  use 'williamboman/mason.nvim'
+  -- use 'williamboman/mason.nvim'
+  use {
+    'williamboman/mason.nvim',
+    dependencies = { 'mason-org/mason-registry' },
+}
+
+
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason-lspconfig.nvim'
 
