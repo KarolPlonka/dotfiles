@@ -4,9 +4,10 @@ require'nvim-treesitter'.setup {
 }
 
 -- Install parsers
-require'nvim-treesitter'.install { 
-  'python', 'lua', 'vim', 'vimdoc', 'query', 
-  'typescript', 'javascript', 'json', 'html', 'css', 'scss', 'php' 
+require'nvim-treesitter'.install {
+  'python', 'lua', 'vim', 'vimdoc', 'query',
+  'typescript', 'javascript', 'json', 'html', 'css', 'scss', 'php',
+  'markdown', 'markdown_inline'
 }
 
 -- Enable highlighting for Python (and other languages)

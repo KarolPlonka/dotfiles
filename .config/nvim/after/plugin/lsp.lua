@@ -64,7 +64,6 @@ end
 
 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
 --
-lspconfig = require("lspconfig")
 local python_root_files = {
   '.venv', -- virtual environment directory
   'WORKSPACE', -- added for Bazel; items below are from default config
@@ -75,7 +74,8 @@ local python_root_files = {
   'Pipfile',
   'pyrightconfig.json',
 }
-lspconfig["pyright"].setup {
+vim.lsp.config('pyright', {
     on_attach = on_attach,
-    root_dir = lspconfig.util.root_pattern(unpack(python_root_files))
-}
+    root_markers = python_root_files,
+})
+vim.lsp.enable('pyright')
