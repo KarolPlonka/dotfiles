@@ -8,9 +8,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.incsearch = true
-
 vim.opt.scrolloff = 8
+vim.opt.splitright = true
 
--- vim.opt.colorcolumn = "80"
-vim.o.splitright = true
-
+vim.o.winborder = "rounded"
