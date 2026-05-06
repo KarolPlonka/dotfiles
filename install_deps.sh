@@ -33,6 +33,7 @@ $SUDO_CMD apt install -y \
     xdg-utils \
     fontconfig \
     gpaste-2 \
+    wl-clipboard \
     bash
 
 # Clean up
