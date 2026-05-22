@@ -19,6 +19,6 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = { colorscheme = { "kanagawa" } },
-  checker = { enabled = true },
+  checker = { enabled = true, auto_install = true },
   git = { filter = false, timeout = 600 },
 })
