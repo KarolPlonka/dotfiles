@@ -23,6 +23,6 @@ vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "<leader>eg", vim.diagnostic.open_float)
 
 vim.keymap.set("n", "<leader>rr", function()
-  vim.cmd("LspRestart pyright")
-  print("LSP server restarted")
+  vim.cmd("LspRestart")
+  print("LSP servers restarted")
 end)
