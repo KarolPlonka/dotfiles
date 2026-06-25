@@ -23,6 +23,11 @@ vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "<leader>eg", vim.diagnostic.open_float)
 
 vim.keymap.set("n", "<leader>rr", function()
-  vim.cmd("LspRestart")
+  vim.lsp.stop_client(vim.lsp.get_clients())
   print("LSP servers restarted")
 end)
+
+vim.keymap.set("n", "<leader>cp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+  print("Copied: " .. vim.fn.expand("%:p"))
+end, { desc = "Copy full file path" })
