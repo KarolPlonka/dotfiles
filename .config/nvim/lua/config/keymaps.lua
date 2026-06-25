@@ -28,6 +28,6 @@ vim.keymap.set("n", "<leader>rr", function()
 end)
 
 vim.keymap.set("n", "<leader>cp", function()
-  vim.fn.setreg("+", vim.fn.expand("%:p"))
-  print("Copied: " .. vim.fn.expand("%:p"))
+  vim.fn.setreg("+", vim.fn.expand("%"))
+  print("Copied: " .. vim.fn.expand("%"))
 end, { desc = "Copy full file path" })
