@@ -10,6 +10,7 @@ return {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
       vim.lsp.enable("pyright")
+      vim.lsp.enable("jsonls")
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
@@ -17,6 +18,7 @@ return {
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
           vim.keymap.set("n", "gr", function() require("telescope.builtin").lsp_references() end, bufopts)
           vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
+          vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, bufopts)
         end,
       })
 
